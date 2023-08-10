@@ -35,7 +35,7 @@ const NavBar = () => {
                     <div className="b-bg">
                         <i className="feather icon-trending-up" />
                     </div>
-                    <span className="b-title">Datta Able</span>
+                    <span className="b-title">SAT Prep AI</span>
                 </Link>
                 {/* <Link to='#' className={moreClass.join(' ')} onClick={() => setMoreToggle(!moreToggle)}>
                     <i className="feather icon-more-vertical"/>

@@ -148,7 +148,15 @@ const menuItems = {
                     url: '/sample-page',
                     classes: 'nav-item',
                     icon: 'feather icon-sidebar'
-                }
+                },
+                {
+                    id: 'practicetest-page',
+                    title: 'Practice Test Page',
+                    type: 'item',
+                    url: '/practicetest-page',
+                    classes: 'nav-item',
+                    icon: 'feather icon-sidebar'
+                }                
             ]
         },
         {

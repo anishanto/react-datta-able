@@ -39,14 +39,6 @@ const Signin1 = () => {
 
                             <p className="mb-0 text-muted">
                                 &copy;{' '}
-                                <a target="_blank" href="https://codedthemes.com/" rel="noreferrer">
-                                    CodedThemes
-                                </a>
-                                -{' '}
-                                <a target="_blank" href="https://appseed.us" rel="noreferrer">
-                                    AppSeed
-                                </a>
-                                .
                             </p>
                         </Card.Body>
                     </Card>
