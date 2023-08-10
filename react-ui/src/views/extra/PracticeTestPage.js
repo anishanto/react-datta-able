@@ -7,6 +7,7 @@ import axios from 'axios';
 import useScriptRef from '../../hooks/useScriptRef';
 import { API_SERVER } from './../../config/constant';
 //import { ACCOUNT_INITIALIZE } from './../../store/actions';
+import { MathpixMarkdown, MathpixLoader, MathpixLoaderAccessibility } from 'mathpix-markdown-it';
 
 import Card from '../../components/Card/MainCard';
 
@@ -14,6 +15,9 @@ const PracticeTestPage = () => {
     //const dispatcher = useDispatch();    
     const scriptedRef = useScriptRef();
     const [questionData, setQuestionData] = useState([]);
+    const outMath = true; // Set to true if you want the equations to be rendered as MathML or LaTeX
+    const accessibility = false; // Set to false to disable accessibility features
+  
 
     useEffect(() => {
         getQuestionAnswers();
@@ -66,8 +70,15 @@ const PracticeTestPage = () => {
         <React.Fragment>
             <Row>
                 <Col>
-                    <Card title={questionData.question} isOption>
-                            <Row>
+                    <Card title={questionData.question} isOption>                       
+                        <MathpixLoader>
+                            <MathpixMarkdown
+                            text={questionData && questionData.question}
+                            outMath={outMath}
+                            accessibility={accessibility}
+                            />
+                        </MathpixLoader>
+                        <Row>
                                 <Col md={6}>                        
                                 <Form>
                                     <Form.Group controlId="Q1Answer">
@@ -86,7 +97,9 @@ const PracticeTestPage = () => {
                                 </Form>
                                 </Col>
                             </Row>
-                        
+                            {/* Other card content */}
+                    {/* </CardContent> */}
+                  
                     </Card>
                 </Col>
             </Row>
