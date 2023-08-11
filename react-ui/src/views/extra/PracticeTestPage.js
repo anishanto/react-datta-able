@@ -10,6 +10,7 @@ import { API_SERVER } from './../../config/constant';
 import { MathpixMarkdown, MathpixLoader, MathpixLoaderAccessibility } from 'mathpix-markdown-it';
 
 import Card from '../../components/Card/MainCard';
+import RadioButtonWithMathpixLabel from '../../components/views/RadioButtonWithMathPixLabel';
 
 const PracticeTestPage = () => {
     //const dispatcher = useDispatch();    
@@ -27,7 +28,7 @@ const PracticeTestPage = () => {
         try {
         axios
             .post(API_SERVER + 'users/QuestionAnswers', {
-                questionNumber: "1"
+                questionNumber: "16"
             })
             .then(function (response) {
                 if (response.data.success) {
@@ -83,15 +84,10 @@ const PracticeTestPage = () => {
                                 <Form>
                                     <Form.Group controlId="Q1Answer">
                                         <Form.Label>Select the right answer from below</Form.Label>
-                                        {questionData.choices && questionData.choices.map((choice, index) => (
-                                            <Form.Check
-                                                key={index}
-                                                type="radio"
-                                                name="Q1Answer"
-                                                label={choice}
-                                                value={choice}
-                                            />
-                                        ))}
+                                        {questionData.choices &&
+                                            questionData.choices.map((choice, index) => (
+                                                <RadioButtonWithMathpixLabel key={index} choice={choice} />
+                                            ))}
                                     </Form.Group> 
                                     <Button variant="primary">Submit</Button>
                                 </Form>
