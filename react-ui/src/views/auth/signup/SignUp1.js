@@ -21,7 +21,7 @@ const SignUp1 = () => {
                         <Row className="align-items-center">
                             <Col>
                                 <Card.Body className="text-center">
-                                    <h4 className="mb-4">React Datta Able</h4>
+                                    <h4 className="mb-4">SAT CoPilot</h4>
 
                                     <div className="mb-4">
                                         <i className="feather icon-user-plus auth-icon" />

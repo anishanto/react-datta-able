@@ -20,7 +20,7 @@ const Signin1 = () => {
                     </div>
                     <Card className="borderless text-center">
                         <Card.Body>
-                            <h4 className="mb-4">React Datta Able</h4>
+                            <h4 className="mb-4">SAT CoPilot</h4>
 
                             <div className="mb-4">
                                 <i className="feather icon-unlock auth-icon" />
