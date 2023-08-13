@@ -7,20 +7,66 @@ import axios from 'axios';
 import useScriptRef from '../../hooks/useScriptRef';
 import { API_SERVER } from './../../config/constant';
 //import { ACCOUNT_INITIALIZE } from './../../store/actions';
-import { MathpixMarkdown, MathpixLoader, MathpixLoaderAccessibility } from 'mathpix-markdown-it';
+import { MathpixMarkdown } from 'mathpix-markdown-it';
 
 import Card from '../../components/Card/MainCard';
 import RadioButtonWithMathpixLabel from '../../components/views/RadioButtonWithMathPixLabel';
 
+const WizardStep = ({ stepData, onNext, onPrevious, currentStep }) => {
+    const outMath = true; // Set to true if you want the equations to be rendered as MathML or LaTeX
+    const accessibility = false; // Set to false to disable accessibility features
+    //const [questionData, setQuestionData] = useState([]);
+    if (!stepData) {
+        return null; // Return null if question is undefined
+      }
+    
+    const renderQuestionAndAnswerChoices = (question, index) => {    
+        
+        console.log(question);             
+        return (         
+          <Form.Group controlId={`Q${index}Answer`}>
+          <Form.Label>
+          <MathpixMarkdown
+            text={question && question.question}
+            outMath={outMath}
+            accessibility={accessibility}
+            />
+            </Form.Label>
+           <p>Select the right answer from below</p>
+            
+            {/* //const choicesArray = question.choices.split(', ').map(choice => choice.trim()); */}
+            <RadioButtonWithMathpixLabel choices={question && question.choices}  />
+
+        </Form.Group>   
+        )}
+   
+         
+        return (
+        <React.Fragment>
+            <Row>
+            <Col>
+                <h2>Question {currentStep + 1}</h2>
+                <Form>
+                    {renderQuestionAndAnswerChoices(stepData,currentStep)}                          
+                    <Button onClick={onPrevious} disabled={currentStep === 0}>
+                    Previous
+                    </Button>
+                    <Button onClick={onNext} disabled={currentStep === stepData.length - 1}>
+                Next
+                </Button>
+                </Form>
+            </Col>
+            </Row>
+        </React.Fragment>
+        );
+  };
+
 const PracticeTestPage = () => {
     //const dispatcher = useDispatch();    
     const scriptedRef = useScriptRef();
-    const [currentStep, setCurrentStep] = useState(19);
-    const [questionData, setQuestionData] = useState([]);
+    const [currentStep, setCurrentStep] = useState(0);
     const [allQuestionData, setAllQuestionData] = useState([]);   
-    const outMath = true; // Set to true if you want the equations to be rendered as MathML or LaTeX
-    const accessibility = false; // Set to false to disable accessibility features
-  
+   
 
     useEffect(() => {
         //getQuestionAnswers();
@@ -39,15 +85,15 @@ const PracticeTestPage = () => {
                     const questionsData = JSON.parse(response.data.Questions);
                     const choicesArray = questionsData.choices.split(', ').map(choice => choice.trim());
 
-                    setQuestionData(({
-                        question: questionsData.question,
-                        choices: choicesArray}))
+                    // setQuestionData(({
+                    //     question: questionsData.question,
+                    //     choices: choicesArray}))
                     // dispatcher({
                     //     type: ACCOUNT_INITIALIZE,
                     //     payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
                     // });
-                    console.log(questionData)
-                    console.log(questionData.length)
+                    //console.log(questionData)
+                    //console.log(questionData.length)
                     if (scriptedRef.current) {
                         // setStatus({ success: true });
                     }
@@ -88,11 +134,11 @@ const PracticeTestPage = () => {
                         //   } catch (error) {
                         //     console.error('Error parsing JSON:', error);
                         //   }
-                        const choicesArray = _questionsData[currentStep].choices.split(', ').map(choice => choice.trim());
+                        // const choicesArray = _questionsData[currentStep].choices.split(', ').map(choice => choice.trim());
     
-                        setQuestionData(({
-                            question: _questionsData[currentStep].question,
-                            choices: choicesArray}))
+                        // setQuestionData(({
+                        //     question: _questionsData[currentStep].question,
+                        //     choices: choicesArray}))
                         // dispatcher({
                         //     type: ACCOUNT_INITIALIZE,
                         //     payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
@@ -133,84 +179,51 @@ const PracticeTestPage = () => {
               setCurrentStep(currentStep - 1);
             }
           };   
-        const renderQuestionAndAnswerChoices = (question, index) => {    
-        
-        console.log(question);             
-        return (         
-          <Form.Group controlId={`Q${index}Answer`}>
-          <MathpixMarkdown
-            text={question && question.question}
-            outMath={outMath}
-            accessibility={accessibility}
-            />
-          <Form.Label>Select the right answer from below</Form.Label>
-          {questionData.choices &&
-              questionData.choices.map((choice, index) => (
-                  <RadioButtonWithMathpixLabel key={index} choice={choice} />
-              ))}
-
-            </Form.Group>   
-         )}       
-        const renderQuestionStep = (question, index) => {
-            console.log(question);   
-            if (!question) {
-                return null; // Return null if question is undefined
-              }        
-            return (
-
-              <div key={index}>
-                <h2>Question {index + 1}</h2>
-                <p>{question.question}</p>
-                <Form.Group controlId={`Q${index}Answer`}>
-                  {question.choices && question.choices.map((choice, choiceIndex) => (
-                    <Form.Check
-                      key={choiceIndex}
-                      type="radio"
-                      name={`Q${index}Answer`}
-                      label={choice}
-                      value={choice}
-                    />
-                  ))}
-                </Form.Group>
-              </div>
-            );
-          };
+    
 
     return (
-        <React.Fragment>
-            <Row>
-                <Col>
-                    <Card title={questionData.question} isOption>                       
-                        {/* <MathpixLoader>
-                            <MathpixMarkdown
-                            text={questionData && questionData.question}
-                            outMath={outMath}
-                            accessibility={accessibility}
-                            />
-                        </MathpixLoader> */}
-                        <Row>
-                                <Col md={6}>                        
-                                <Form>
-                                {renderQuestionAndAnswerChoices(allQuestionData[currentStep],currentStep)}
-                                    {/* {renderQuestionStep(allQuestionData[currentStep] && allQuestionData[currentStep], currentStep)} */}
-                                    <Button onClick={handlePrevious} disabled={currentStep === 0}>
-                                        Previous
-                                    </Button>
-                                    <Button onClick={handleNext} disabled={currentStep === allQuestionData.length - 1}>
-                                        Next
-                                    </Button>
+        <div>
+        <WizardStep
+          stepData={allQuestionData[currentStep]}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+          currentStep={currentStep}
+        />
+        </div>
+        // <React.Fragment>
+        //     <Row>
+        //         <Col>
+        //             <Card title={questionData.question} isOption>                       
+        //                 {/* <MathpixLoader>
+        //                     <MathpixMarkdown
+        //                     text={questionData && questionData.question}
+        //                     outMath={outMath}
+        //                     accessibility={accessibility}
+        //                     />
+        //                 </MathpixLoader> */}
+        //                 <Row>
+        //                         <Col md={6}>                        
+        //                         <Form>
+        //                         {renderQuestionAndAnswerChoices(allQuestionData[currentStep],currentStep)}
+        //                             {/* {renderQuestionStep(allQuestionData[currentStep] && allQuestionData[currentStep], currentStep)} */}
+        //                             <Button onClick={handlePrevious} disabled={currentStep === 0}>
+        //                                 Previous
+        //                             </Button>
+        //                             <Button onClick={handleNext} disabled={currentStep === allQuestionData.length - 1}>
+        //                                 Next
+        //                             </Button>
 
-                                    <Button variant="primary">Submit</Button>
-                                </Form>
-                                </Col>
-                        </Row>
-                            {/* Other card content */}
-                    {/* </CardContent> */}
+        //                             <Button variant="primary">Submit</Button>
+        //                         </Form>
+        //                         </Col>
+        //                 </Row>
+        //                     {/* Other card content */}
+        //             {/* </CardContent> */}
                   
-                    </Card>
-                </Col>
-            </Row>
-        </React.Fragment>
+        //             </Card>
+        //         </Col>
+        //     </Row>
+        // </React.Fragment>
     );
 };
 
