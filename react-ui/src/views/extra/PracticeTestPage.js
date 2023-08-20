@@ -12,61 +12,78 @@ import { MathpixMarkdown } from 'mathpix-markdown-it';
 import Card from '../../components/Card/MainCard';
 import RadioButtonWithMathpixLabel from '../../components/views/RadioButtonWithMathPixLabel';
 
-const WizardStep = ({ stepData, onNext, onPrevious, currentStep }) => {
+const WizardStep = ({ stepData, onNext, onPrevious, currentStep, handleAnswerChange, selectedAnswer }) => {
+  
     const outMath = true; // Set to true if you want the equations to be rendered as MathML or LaTeX
     const accessibility = false; // Set to false to disable accessibility features
     //const [questionData, setQuestionData] = useState([]);
     if (!stepData) {
         return null; // Return null if question is undefined
       }
-    
-    const renderQuestionAndAnswerChoices = (question, index) => {    
-        
-        console.log(question);             
-        return (         
-          <Form.Group controlId={`Q${index}Answer`}>
-          <Form.Label>
-          <MathpixMarkdown
-            text={question && question.question}
-            outMath={outMath}
-            accessibility={accessibility}
-            />
-            </Form.Label>
-           <p>Select the right answer from below</p>
-            
-            {/* //const choicesArray = question.choices.split(', ').map(choice => choice.trim()); */}
-            <RadioButtonWithMathpixLabel choices={question && question.choices}  />
+ 
+    // const handleAnswerChange = (event) => {
+    // setSelectedAnswer(event.target.value);
+    // };      
+    const isAnswerSelected = selectedAnswer[currentStep] !== undefined;
 
-        </Form.Group>   
-        )}
+    const renderQuestionAndAnswerChoices = (question, index) => {
+        return (
+          <Form.Group controlId={`Q${index}Answer`} key={index}>
+            <Form.Label>
+              <MathpixMarkdown text={question && question.question} />
+            </Form.Label>
+            <RadioButtonWithMathpixLabel
+              choices={question && question.choices}
+              handleAnswerChange={(selectedOption) => handleAnswerChange(currentStep, selectedOption)}
+              selectedAnswer={selectedAnswer[currentStep]}
+            />
+            {isAnswerSelected ? (
+              <Form.Control.Feedback type="valid">Thank you for selecting an answer.</Form.Control.Feedback>
+            ) : (
+              <Form.Control.Feedback type="invalid">Please choose an answer.</Form.Control.Feedback>
+            )}
+          </Form.Group>
+        );
+      };
    
          
         return (
-        <React.Fragment>
-            <Row>
-            <Col>
-                <h2>Question {currentStep + 1}</h2>
-                <Form>
-                    {renderQuestionAndAnswerChoices(stepData,currentStep)}                          
+            <React.Fragment>
+              <Row>
+                <Col>
+                  <h2>Question {currentStep + 1}</h2>
+                  <Form noValidate>
+                    {renderQuestionAndAnswerChoices(stepData, currentStep)}
                     <Button onClick={onPrevious} disabled={currentStep === 0}>
-                    Previous
+                      Previous
                     </Button>
                     <Button onClick={onNext} disabled={currentStep === stepData.length - 1}>
-                Next
-                </Button>
-                </Form>
-            </Col>
-            </Row>
-        </React.Fragment>
-        );
-  };
+                      Next
+                    </Button>
+                  </Form>
+                </Col>
+              </Row>
+            </React.Fragment>
+          );
+};
 
 const PracticeTestPage = () => {
     //const dispatcher = useDispatch();    
     const scriptedRef = useScriptRef();
     const [currentStep, setCurrentStep] = useState(0);
     const [allQuestionData, setAllQuestionData] = useState([]);   
-   
+    const [validated, setValidated] = useState(false);
+    const [validatedTooltip, setValidatedTooltip] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState({});
+
+
+
+    const handleAnswerChange = (questionIndex, selectedOption) => {
+        setSelectedAnswer((prevState) => ({
+          ...prevState,
+          [questionIndex]: selectedOption,
+        }));
+      };
 
     useEffect(() => {
         //getQuestionAnswers();
@@ -166,12 +183,23 @@ const PracticeTestPage = () => {
                 }
             }
             };        
-        const handleNext = () => {
-            console.log("currentStep:"+ currentStep )
-            if (currentStep < allQuestionData.length - 1) {
-              setCurrentStep(currentStep + 1);
-            }
-          };
+
+
+            const handleNext = () => {
+                if (!selectedAnswer) {
+                  // If no answer is selected, set validation to show
+                  setValidated(true);
+                  return;
+                }
+            
+                // Move to the next question
+                if (currentStep < allQuestionData.length - 1) {
+                  setCurrentStep(currentStep + 1);
+                  setSelectedAnswer(''); // Reset selected answer for the next question
+                  setValidated(false); // Reset validation for the next question
+                }
+              };
+        
         
           const handlePrevious = () => {
             console.log("currentStep:"+ currentStep)
@@ -181,50 +209,24 @@ const PracticeTestPage = () => {
           };   
     
 
-    return (
-        <div>
-        <WizardStep
-          stepData={allQuestionData[currentStep]}
-          onNext={handleNext}
-          onPrevious={handlePrevious}
-          currentStep={currentStep}
-        />
-        </div>
-        // <React.Fragment>
-        //     <Row>
-        //         <Col>
-        //             <Card title={questionData.question} isOption>                       
-        //                 {/* <MathpixLoader>
-        //                     <MathpixMarkdown
-        //                     text={questionData && questionData.question}
-        //                     outMath={outMath}
-        //                     accessibility={accessibility}
-        //                     />
-        //                 </MathpixLoader> */}
-        //                 <Row>
-        //                         <Col md={6}>                        
-        //                         <Form>
-        //                         {renderQuestionAndAnswerChoices(allQuestionData[currentStep],currentStep)}
-        //                             {/* {renderQuestionStep(allQuestionData[currentStep] && allQuestionData[currentStep], currentStep)} */}
-        //                             <Button onClick={handlePrevious} disabled={currentStep === 0}>
-        //                                 Previous
-        //                             </Button>
-        //                             <Button onClick={handleNext} disabled={currentStep === allQuestionData.length - 1}>
-        //                                 Next
-        //                             </Button>
-
-        //                             <Button variant="primary">Submit</Button>
-        //                         </Form>
-        //                         </Col>
-        //                 </Row>
-        //                     {/* Other card content */}
-        //             {/* </CardContent> */}
-                  
-        //             </Card>
-        //         </Col>
-        //     </Row>
-        // </React.Fragment>
-    );
-};
-
+          return (
+            <div>
+              <WizardStep
+                stepData={allQuestionData[currentStep]}
+                onNext={handleNext}
+                onPrevious={handlePrevious}
+                currentStep={currentStep}
+                handleAnswerChange={handleAnswerChange}
+                selectedAnswer={selectedAnswer}
+              />
+            </div>
+          );
+        };
+        
 export default PracticeTestPage;
+        
+        
+        
+        
+        
+        
