@@ -68,7 +68,7 @@ const WizardStep = ({ stepData, onNext, onPrevious, currentStep, handleAnswerCha
           );
 };
 
-const PracticeTestPage = () => {
+const ReviewPracticeTestPage = () => {
     //const dispatcher = useDispatch();    
     const scriptedRef = useScriptRef();
     const [currentStep, setCurrentStep] = useState(0);
@@ -134,7 +134,7 @@ const PracticeTestPage = () => {
             }
         }
         };
-        const saveUserAnswer = async (question,selectedAnswer) => {
+        const LoadUserAnswers = async (question,selectedAnswer) => {
             try {
             console.log(selectedAnswer);
                 
@@ -232,7 +232,6 @@ const PracticeTestPage = () => {
             
                 // Move to the next question
                 if (currentStep < allQuestionData.length - 1) {
-                  saveUserAnswer(allQuestionData[currentStep],selectedAnswer[currentStep]);
                   setCurrentStep(currentStep + 1);
                   setSelectedAnswer(''); // Reset selected answer for the next question
                   setValidated(false); // Reset validation for the next question
@@ -262,7 +261,7 @@ const PracticeTestPage = () => {
           );
         };
         
-export default PracticeTestPage;
+export default ReviewPracticeTestPage;
         
         
         

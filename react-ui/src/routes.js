@@ -132,6 +132,19 @@ const routes = [
                 component: lazy(() => import('./views/extra/PracticeTestPage'))
             },
             {
+                exact: true,
+                path: '/selectcategory-page',
+                component: lazy(() => import('./views/extra/SelectCategoryPage'))
+            }, 
+            {
+                path: '/reviewpracticetest-page',
+                component: lazy(() => import('./views/extra/ReviewPracticeTest'))
+            },        
+            {
+                path: '/practicetest-page/:category/:numberOfQuestions',
+                component: lazy(() => import('./views/extra/PracticeTestPage'))
+            },                            
+            {
                 path: '*',
                 exact: true,
                 component: () => <Redirect to={BASE_URL} />

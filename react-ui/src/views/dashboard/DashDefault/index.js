@@ -16,23 +16,23 @@ const DashDefault = () => {
                 <Col md={6} xl={4}>
                     <Card>
                         <Card.Body>
-                            <h6 className="mb-4">Daily Sales</h6>
+                            <h6 className="mb-4">Average Score%</h6>
                             <div className="row d-flex align-items-center">
                                 <div className="col-9">
                                     <h3 className="f-w-300 d-flex align-items-center m-b-0">
-                                        <i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> $249.95
+                                        <i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> 75%
                                     </h3>
                                 </div>
 
                                 <div className="col-3 text-right">
-                                    <p className="m-b-0">50%</p>
+                                    <p className="m-b-0">75%</p>
                                 </div>
                             </div>
                             <div className="progress m-t-30" style={{ height: '7px' }}>
                                 <div
                                     className="progress-bar progress-c-theme"
                                     role="progressbar"
-                                    style={{ width: '50%' }}
+                                    style={{ width: '75%' }}
                                     aria-valuenow="50"
                                     aria-valuemin="0"
                                     aria-valuemax="100"
@@ -44,24 +44,24 @@ const DashDefault = () => {
                 <Col md={6} xl={4}>
                     <Card>
                         <Card.Body>
-                            <h6 className="mb-4">Monthly Sales</h6>
+                            <h6 className="mb-4">Weekly Score%</h6>
                             <div className="row d-flex align-items-center">
                                 <div className="col-9">
                                     <h3 className="f-w-300 d-flex align-items-center m-b-0">
-                                        <i className="feather icon-arrow-down text-c-red f-30 m-r-5" /> $2.942.32
+                                        <i className="feather icon-arrow-down text-c-red f-30 m-r-5" /> 60%
                                     </h3>
                                 </div>
 
                                 <div className="col-3 text-right">
-                                    <p className="m-b-0">36%</p>
+                                    <p className="m-b-0">60%</p>
                                 </div>
                             </div>
                             <div className="progress m-t-30" style={{ height: '7px' }}>
                                 <div
                                     className="progress-bar progress-c-theme2"
                                     role="progressbar"
-                                    style={{ width: '35%' }}
-                                    aria-valuenow="35"
+                                    style={{ width: '60%' }}
+                                    aria-valuenow="60"
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                 />
@@ -72,11 +72,11 @@ const DashDefault = () => {
                 <Col xl={4}>
                     <Card>
                         <Card.Body>
-                            <h6 className="mb-4">Yearly Sales</h6>
+                            <h6 className="mb-4">Monthly Score %</h6>
                             <div className="row d-flex align-items-center">
                                 <div className="col-9">
                                     <h3 className="f-w-300 d-flex align-items-center m-b-0">
-                                        <i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> $8.638.32
+                                        <i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> 50%
                                     </h3>
                                 </div>
 
@@ -111,16 +111,16 @@ const DashDefault = () => {
                     <Card className="bg-c-blue">
                         <Card.Header className="borderless">
                             <Card.Title as="h5" className="text-white">
-                                Earnings
+                                Test Scores
                             </Card.Title>
                         </Card.Header>
                         <Card.Body style={{ padding: '0 25px' }}>
                             <div className="earning-text mb-0">
                                 <h3 className="mb-2 text-white f-w-300">
                                     {' '}
-                                    $4295.36 <i className="feather icon-arrow-up teal accent-3" />
+                                    400 <i className="feather icon-arrow-up teal accent-3" />
                                 </h3>
-                                <span className="text-uppercase text-white d-block">Total Earnings</span>
+                                <span className="text-uppercase text-white d-block">Test Scores</span>
                             </div>
                             <AmChartEarnings height="180px" />
                         </Card.Body>
@@ -132,8 +132,8 @@ const DashDefault = () => {
                                     <i className="feather icon-zap f-30 text-c-green" />
                                 </div>
                                 <div className="col">
-                                    <h3 className="f-w-300">235</h3>
-                                    <span className="d-block text-uppercase">total ideas</span>
+                                    <h3 className="f-w-300">12</h3>
+                                    <span className="d-block text-uppercase">Tests Taken</span>
                                 </div>
                             </div>
                         </Card.Body>
@@ -143,8 +143,8 @@ const DashDefault = () => {
                                     <i className="feather icon-map-pin f-30 text-c-blue" />
                                 </div>
                                 <div className="col">
-                                    <h3 className="f-w-300">26</h3>
-                                    <span className="d-block text-uppercase">total locations</span>
+                                    <h3 className="f-w-300">120 hours</h3>
+                                    <span className="d-block text-uppercase">TimeSpent</span>
                                 </div>
                             </div>
                         </Card.Body>
@@ -155,12 +155,12 @@ const DashDefault = () => {
                         <Card.Body className="border-bottom">
                             <div className="row align-items-center justify-content-center">
                                 <div className="col-auto">
-                                    <i className="fab fa-facebook-f text-primary f-36" />
+                                    <i className="fas fa-clipboard-list text-primary f-36" />
                                 </div>
                                 <div className="col text-right">
-                                    <h3>12,281</h3>
+                                    <h3>256</h3>
                                     <h5 className="text-c-green mb-0">
-                                        +7.2% <span className="text-muted">Total Likes</span>
+                                        +7.2% <span className="text-muted">Total Questions</span>
                                     </h5>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@ const DashDefault = () => {
                             <div className="row align-items-center justify-content-center card-active">
                                 <div className="col-6">
                                     <h6 className="text-center m-b-10">
-                                        <span className="text-muted m-r-5">Target:</span>35,098
+                                        <span className="text-muted m-r-5">Target:</span>1000
                                     </h6>
                                     <div className="progress">
                                         <div
@@ -184,7 +184,7 @@ const DashDefault = () => {
                                 </div>
                                 <div className="col-6">
                                     <h6 className="text-center  m-b-10">
-                                        <span className="text-muted m-r-5">Duration:</span>350
+                                        <span className="text-muted m-r-5">Time Spent:</span>500
                                     </h6>
                                     <div className="progress">
                                         <div
@@ -206,12 +206,12 @@ const DashDefault = () => {
                         <Card.Body className="border-bottom">
                             <div className="row align-items-center justify-content-center">
                                 <div className="col-auto">
-                                    <i className="fab fa-twitter text-c-blue f-36" />
+                                    <i className="fas fa-clipboard-check text-c-blue f-36" />
                                 </div>
                                 <div className="col text-right">
-                                    <h3>11,200</h3>
+                                    <h3>112</h3>
                                     <h5 className="text-c-purple mb-0">
-                                        +6.2% <span className="text-muted">Total Likes</span>
+                                        +6.2% <span className="text-muted">Correct Answers</span>
                                     </h5>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@ const DashDefault = () => {
                             <div className="row align-items-center justify-content-center card-active">
                                 <div className="col-6">
                                     <h6 className="text-center m-b-10">
-                                        <span className="text-muted m-r-5">Target:</span>34,185
+                                        <span className="text-muted m-r-5">Target:</span>700
                                     </h6>
                                     <div className="progress">
                                         <div
@@ -235,7 +235,7 @@ const DashDefault = () => {
                                 </div>
                                 <div className="col-6">
                                     <h6 className="text-center  m-b-10">
-                                        <span className="text-muted m-r-5">Duration:</span>800
+                                        <span className="text-muted m-r-5">Duration:</span>80
                                     </h6>
                                     <div className="progress">
                                         <div
@@ -257,12 +257,12 @@ const DashDefault = () => {
                         <Card.Body className="border-bottom">
                             <div className="row align-items-center justify-content-center">
                                 <div className="col-auto">
-                                    <i className="fab fa-google-plus-g text-c-red f-36" />
+                                    <i className="fas fa-times text-c-red f-36" />
                                 </div>
                                 <div className="col text-right">
-                                    <h3>10,500</h3>
+                                    <h3>105</h3>
                                     <h5 className="text-c-blue mb-0">
-                                        +5.9% <span className="text-muted">Total Likes</span>
+                                        +5.9% <span className="text-muted">Incorrect Answers</span>
                                     </h5>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@ const DashDefault = () => {
                             <div className="row align-items-center justify-content-center card-active">
                                 <div className="col-6">
                                     <h6 className="text-center m-b-10">
-                                        <span className="text-muted m-r-5">Target:</span>25,998
+                                        <span className="text-muted m-r-5">Target:</span>250
                                     </h6>
                                     <div className="progress">
                                         <div
@@ -286,7 +286,7 @@ const DashDefault = () => {
                                 </div>
                                 <div className="col-6">
                                     <h6 className="text-center  m-b-10">
-                                        <span className="text-muted m-r-5">Duration:</span>900
+                                        <span className="text-muted m-r-5">Duration:</span>90
                                     </h6>
                                     <div className="progress">
                                         <div

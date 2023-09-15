@@ -31,11 +31,11 @@ const AmChartStatistics6 = (props) => {
                     fillColors: ['#1de9b6', '#1dc4e9'],
                     fillAlphas: 1,
                     type: 'column',
-                    title: 'SALES',
-                    valueField: 'sales',
+                    title: 'Reading',
+                    valueField: 'Reading',
                     columnWidth: 0.3,
-                    legendValueText: '$[[value]]M',
-                    balloonText: "[[title]]<br /><b style='font-size: 130%'>$[[value]]M</b>"
+                    legendValueText: '[[value]]',
+                    balloonText: "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
                 },
                 {
                     id: 'g2',
@@ -44,11 +44,11 @@ const AmChartStatistics6 = (props) => {
                     fillColors: ['#a389d4', '#899ed4'],
                     fillAlphas: 1,
                     type: 'column',
-                    title: 'VISITS ',
-                    valueField: 'visits',
+                    title: 'Math ',
+                    valueField: 'Math',
                     columnWidth: 0.3,
-                    legendValueText: '$[[value]]M',
-                    balloonText: "[[title]]<br /><b style='font-size: 130%'>$[[value]]M</b>"
+                    legendValueText: '[[value]]',
+                    balloonText: "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
                 },
                 {
                     id: 'g3',
@@ -57,11 +57,11 @@ const AmChartStatistics6 = (props) => {
                     fillColors: ['#04a9f5', '#049df5'],
                     fillAlphas: 1,
                     type: 'column',
-                    title: 'CLICKS',
-                    valueField: 'clicks',
+                    title: 'All',
+                    valueField: 'All',
                     columnWidth: 0.3,
                     legendValueText: '$[[value]]M',
-                    balloonText: "[[title]]<br /><b style='font-size: 130%'>$[[value]]M</b>"
+                    balloonText: "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
                 }
             ],
             chartCursor: {
@@ -71,7 +71,7 @@ const AmChartStatistics6 = (props) => {
                 cursorAlpha: 0,
                 valueLineAlpha: 0.2
             },
-            categoryField: 'Year',
+            categoryField: 'Month',
             categoryAxis: {
                 dashLength: 1,
                 gridAlpha: 0,
@@ -89,28 +89,28 @@ const AmChartStatistics6 = (props) => {
             },
             dataProvider: [
                 {
-                    Year: '2014',
-                    sales: 2,
-                    visits: 4,
-                    clicks: 3
+                    Month: 'Jun',
+                    Reading: 2,
+                    Math: 4,
+                    All: 3
                 },
                 {
-                    Year: '2015',
-                    sales: 4,
-                    visits: 7,
-                    clicks: 5
+                    Month: 'July',
+                    Reading: 4,
+                    Math: 7,
+                    All: 5
                 },
                 {
-                    Year: '2016',
-                    sales: 2,
-                    visits: 3,
-                    clicks: 4
+                    Month: 'Aug',
+                    Reading: 2,
+                    Math: 3,
+                    All: 4
                 },
                 {
-                    Year: '2017',
-                    sales: 4.5,
-                    visits: 6,
-                    clicks: 4
+                    Month: 'Sep',
+                    Reading: 4.5,
+                    Math: 6,
+                    All: 4
                 }
             ]
         });

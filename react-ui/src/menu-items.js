@@ -156,7 +156,23 @@ const menuItems = {
                     url: '/practicetest-page',
                     classes: 'nav-item',
                     icon: 'feather icon-sidebar'
-                }                
+                },
+                {
+                    id: 'selectcategory-page',
+                    title: 'Select Category Page',
+                    type: 'item',
+                    url: '/selectcategory-page',
+                    classes: 'nav-item',
+                    icon: 'feather icon-box'
+                },
+                {
+                    id: 'reviewpracticetest-page',
+                    title: 'Review Practice Test Page',
+                    type: 'item',
+                    url: '/reviewpracticetest-page',
+                    classes: 'nav-item',
+                    icon: 'feather icon-box'
+                }                                                  
             ]
         },
         {

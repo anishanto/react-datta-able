@@ -6,6 +6,7 @@ const RadioButtonWithMathpixLabel = ({ choices,handleAnswerChange  }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   console.log(choices);
   if (!choices) {
+    //setSelectedAnswer('');
     return null; // Return null if choices are undefined
   }
   const onRadioChange = (event) => {
